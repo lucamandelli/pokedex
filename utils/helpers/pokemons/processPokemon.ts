@@ -4,7 +4,7 @@ import { setPokemonPhoto } from "./setPokemonPhoto";
 import { validatePokemon } from "./validatePokemon";
 
 export async function processPokemons(data: Partial<Pokemon>, collection: any) {
-  const validationError = validatePokemon(data);
+  const validationError = await validatePokemon(data, collection);
   if (validationError) {
     return { statusCode: 400, dataReceived: data, reason: validationError };
   }

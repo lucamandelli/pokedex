@@ -8,7 +8,7 @@ export async function processManyPokemons(dataArray: Partial<Pokemon>[], collect
   const failedPokemons: any[] = [];
 
   for (let data of dataArray) {
-    const validationError = validatePokemon(data);
+    const validationError = await validatePokemon(data, collection);
     if (validationError) {
       failedPokemons.push({ dataReceived: data, reason: validationError });
       continue;
