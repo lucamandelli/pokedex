@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const pokemon: Pokemon = {
       id: data._id.toString(),
       name: data.name,
+      photo: data.photo,
       type: data.type,
       weight: data.weight,
       abilities: data.abilities
