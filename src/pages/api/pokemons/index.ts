@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   else if (req.method === 'POST') {
     const data: Partial<Pokemon> = {
-      name: req.body.name,
+      name: req.body.name.trim().toLowerCase(),
       photo: '',
       type: req.body.type,
       weight: req.body.weight,

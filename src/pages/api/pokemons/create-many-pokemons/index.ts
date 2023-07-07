@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const dataArray: Partial<Pokemon>[] = req.body.map((pokemon: Partial<Pokemon>) => ({
-    name: pokemon.name,
+    name: pokemon.name?.trim().toLowerCase(),
     photo: '',
     type: pokemon.type,
     weight: pokemon.weight,
