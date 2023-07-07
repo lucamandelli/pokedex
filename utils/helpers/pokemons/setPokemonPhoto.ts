@@ -1,5 +1,5 @@
 import { Pokemon } from "../../models/Pokemons";
-import { fetchPokemonImage } from "../../handlers/fetchPokemonImage";
+import { fetchPokemonImage } from "./fetchPokemonImage";
 
 export async function setPokemonPhoto(pokemon: Partial<Pokemon>): Promise<string | null> {
   const photo = await fetchPokemonImage(pokemon.name!.trim().toLowerCase());
