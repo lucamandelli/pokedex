@@ -1,23 +1,26 @@
 import { Pokemon } from "../../models/Pokemons";
-import { insertPokemon } from "./insertPokemon";
-import { setPokemonPhoto } from "./setPokemonPhoto";
-import { validatePokemon } from "./validatePokemon";
+import { User } from "../../models/User";
+import { insertPokemon } from "./validation/insertPokemon";
+import { setPokemonPhoto } from "./validation/setPokemonPhoto";
+import { validatePokemon } from "./validation/validatePokemon";
 
-export async function processPokemons(data: Partial<Pokemon>, collection: any) {
-  const validationError = await validatePokemon(data, collection);
+export async function processPokemons(pokemon: Partial<Pokemon>, user: Partial<User>, usersCollection: any, pokemonCollection: any) {
+  const validationError = await validatePokemon(pokemon, user.pokedex!, pokemonCollection);
+
   if (validationError) {
-    return { statusCode: 400, dataReceived: data, reason: validationError };
+    return { statusCode: 400, dataReceived: pokemon, reason: validationError };
   }
 
-  const photoError = await setPokemonPhoto(data);
+  const photoError = await setPokemonPhoto(pokemon);
   if (photoError) {
-    return { statusCode: 400, name: data.name, reason: photoError };
+    return { statusCode: 400, name: pokemon.name, reason: photoError };
   }
 
-  const insertionError = await insertPokemon(data as Pokemon, collection);
+  const insertionError = await insertPokemon(pokemon as Pokemon, usersCollection, pokemonCollection);
+
   if (insertionError) {
-    return { statusCode: 400, name: data.name, reason: insertionError };
+    return { statusCode: 400, name: pokemon.name, reason: insertionError };
   }
 
-  return { statusCode: 201, message: "Pokemon created successfully", pokemon: data };
+  return { statusCode: 201, message: "Pokemon created successfully", userIdOwner: pokemon.userId, pokemon: pokemon };
 }

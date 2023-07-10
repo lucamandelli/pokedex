@@ -1,5 +1,6 @@
 export interface Pokemon {
   id: string;
+  userId: string;
   name: string;
   photo: string;
   type: string;
