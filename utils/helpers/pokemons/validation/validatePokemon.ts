@@ -3,7 +3,7 @@ import { getAllPokemons } from "../getAllPokemons";
 
 export async function validatePokemon(pokemon: Partial<Pokemon>, userPokedex: string[], pokemonCollection: any): Promise<string | null> {
   if (!pokemon || !pokemon.name || !pokemon.type || !pokemon.weight || !pokemon.abilities) {
-    return 'Data is invalid.';
+    return 'Missing required fields.';
   }
   const { userPokemons } = await getAllPokemons(userPokedex, pokemonCollection);
 

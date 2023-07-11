@@ -13,7 +13,14 @@ export async function getPokemon(userPokedex: string[], PokemonsCollection: any,
     };
   }
 
-  if (!userPokedex.includes(pokemonId)) {
+  if (userPokedex.length === 0) {
+    return {
+      error: "User has no Pokemons",
+      statusCode: 404
+    }
+  }
+
+  if (!userPokedex.map(String).includes(pokemonId)) {
     return {
       error: "Pokemon not in your pokédex",
       statusCode: 404

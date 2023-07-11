@@ -10,6 +10,6 @@ export async function insertPokemon(pokemon: Pokemon, usersCollection: any, poke
 
     return null;
   } catch (error) {
-    return 'Error inserting into the database.';
+    return 'Error inserting pokemon into the database.';
   }
 }

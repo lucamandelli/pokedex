@@ -52,8 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const processedPokemon = await processPokemons(pokemon, userData, usersCollection, pokemonsCollection);
 
     return res.status(processedPokemon.statusCode).json(processedPokemon);
-  }
-  else {
+  } else {
     return res.status(405).json({ message: "Method not allowed" });
   }
 }
