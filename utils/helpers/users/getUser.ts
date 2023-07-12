@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 import { User } from "../../models/User";
 
-export async function getUser(UsersCollection: any, userId: string): Promise<Partial<User> | { error: string, statusCode: number }> {
+export async function getUser(usersCollection: Collection, userId: string): Promise<Partial<User> | { error: string, statusCode: number }> {
   let query;
 
   if (ObjectId.isValid(userId)) {
@@ -13,7 +13,7 @@ export async function getUser(UsersCollection: any, userId: string): Promise<Par
     };
   }
 
-  const userData = await UsersCollection.findOne(query);
+  const userData = await usersCollection.findOne(query);
 
   if (!userData) {
     return {

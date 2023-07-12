@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 import { Pokemon } from "../../../models/Pokemons";
 
-export async function insertPokemon(pokemon: Pokemon, usersCollection: any, pokemonCollection: any): Promise<string | null> {
+export async function insertPokemon(pokemon: Pokemon, usersCollection: Collection, pokemonCollection: Collection): Promise<string | null> {
   try {
     const res = await pokemonCollection.insertOne(pokemon);
     const pokemonId = res.insertedId;

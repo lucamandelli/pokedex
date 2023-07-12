@@ -1,8 +1,8 @@
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 import { getUser } from "../users/getUser";
 import { getAllPokemons } from "./getAllPokemons";
 
-export async function deletePokemon(usersCollection: any, pokemonCollection: any, userId: string, pokemonId: string) {
+export async function deletePokemon(usersCollection: Collection, pokemonsCollection: Collection, userId: string, pokemonId: string) {
   const userData = await getUser(usersCollection, userId);
 
   if ('error' in userData) {
@@ -19,7 +19,7 @@ export async function deletePokemon(usersCollection: any, pokemonCollection: any
     };
   }
 
-  const { userPokemons } = await getAllPokemons(userData.pokedex!, pokemonCollection);
+  const { userPokemons } = await getAllPokemons(userData.pokedex!, pokemonsCollection);
 
   if (!userPokemons) {
     return {
@@ -40,7 +40,7 @@ export async function deletePokemon(usersCollection: any, pokemonCollection: any
   try {
     await usersCollection.updateOne({ _id: new ObjectId(userId) }, { $pull: { pokedex: new ObjectId(pokemonId) } });
 
-    await pokemonCollection.deleteOne({ _id: new ObjectId(pokemonId) });
+    await pokemonsCollection.deleteOne({ _id: new ObjectId(pokemonId) });
 
     return {
       message: "Pokemon deleted successfully",

@@ -1,7 +1,8 @@
+import { Collection } from "mongodb";
 import { User } from "../../../models/User";
 import { getAllUsers } from "../getAllUsers";
 
-export async function validateUser(user: Partial<User>, usersCollection: any): Promise<string | null> {
+export async function validateUser(user: Partial<User>, usersCollection: Collection): Promise<string | null> {
   if (!user || !user.name || !user.email || !user.password) {
     return 'Missing required fields.';
   }

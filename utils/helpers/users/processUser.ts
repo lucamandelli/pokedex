@@ -1,8 +1,9 @@
+import { Collection } from "mongodb";
 import { User } from "../../models/User";
 import { insertUser } from "./validation/insertUser";
 import { validateUser } from "./validation/validateUser";
 
-export async function processUser(user: Partial<User>, usersCollection: any) {
+export async function processUser(user: Partial<User>, usersCollection: Collection) {
   const validationError = await validateUser(user, usersCollection);
 
   if (validationError) {

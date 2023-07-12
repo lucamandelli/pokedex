@@ -1,7 +1,7 @@
 import { Pokemon } from "../../models/Pokemons";
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 
-export async function getPokemon(userPokedex: string[], PokemonsCollection: any, pokemonId: string): Promise<Pokemon | { error: string, statusCode: number }> {
+export async function getPokemon(userPokedex: string[], pokemonsCollection: Collection, pokemonId: string): Promise<Pokemon | { error: string, statusCode: number }> {
   let query;
 
   if (ObjectId.isValid(pokemonId)) {
@@ -27,7 +27,7 @@ export async function getPokemon(userPokedex: string[], PokemonsCollection: any,
     };
   }
 
-  const pokemon = await PokemonsCollection.findOne(query);
+  const pokemon = await pokemonsCollection.findOne(query);
 
   if (!pokemon) {
     return {

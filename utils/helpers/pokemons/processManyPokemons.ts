@@ -1,10 +1,11 @@
+import { Collection } from "mongodb";
 import { Pokemon } from "../../models/Pokemons";
 import { User } from "../../models/User";
 import { insertPokemon } from "./validation/insertPokemon";
 import { setPokemonPhoto } from "./validation/setPokemonPhoto";
 import { validatePokemon } from "./validation/validatePokemon";
 
-export async function processManyPokemons(pokemonsArray: Partial<Pokemon>[], user: Partial<User>, usersCollection: any, pokemonCollection: any): Promise<{ createdPokemons: Pokemon[], failedPokemons: any[] }> {
+export async function processManyPokemons(pokemonsArray: Partial<Pokemon>[], user: Partial<User>, usersCollection: Collection, pokemonCollection: Collection): Promise<{ createdPokemons: Pokemon[], failedPokemons: any[] }> {
   const createdPokemons: Pokemon[] = [];
   const failedPokemons: any[] = [];
 

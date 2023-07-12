@@ -1,9 +1,9 @@
-import { ObjectId } from "mongodb";
+import { Collection, ObjectId } from "mongodb";
 import { Pokemon } from "../../models/Pokemons";
 import { getUser } from "../users/getUser";
 import { getAllPokemons } from "./getAllPokemons";
 
-export async function updatePokemon(updatedPokemon: Partial<Pokemon>, usersCollection: any, pokemonCollection: any, userId: string, pokemonId: string) {
+export async function updatePokemon(updatedPokemon: Partial<Pokemon>, usersCollection: Collection, pokemonCollection: Collection, userId: string, pokemonId: string) {
   const userData = await getUser(usersCollection, userId);
 
   if ('error' in userData) {

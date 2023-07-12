@@ -1,10 +1,11 @@
+import { Collection } from "mongodb";
 import { Pokemon } from "../../models/Pokemons";
 import { User } from "../../models/User";
 import { insertPokemon } from "./validation/insertPokemon";
 import { setPokemonPhoto } from "./validation/setPokemonPhoto";
 import { validatePokemon } from "./validation/validatePokemon";
 
-export async function processPokemons(pokemon: Partial<Pokemon>, user: Partial<User>, usersCollection: any, pokemonCollection: any) {
+export async function processPokemons(pokemon: Partial<Pokemon>, user: Partial<User>, usersCollection: Collection, pokemonCollection: Collection) {
   const validationError = await validatePokemon(pokemon, user.pokedex!, pokemonCollection);
 
   if (validationError) {
