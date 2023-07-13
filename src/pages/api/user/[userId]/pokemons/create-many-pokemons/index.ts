@@ -4,8 +4,14 @@ import { Pokemon } from "../../../../../../../utils/models/Pokemons";
 import { processManyPokemons } from "../../../../../../../utils/helpers/pokemons/processManyPokemons";
 import { checkIdOrName } from "../../../../../../../utils/helpers/validation/checkIdOrName";
 import { getUser } from "../../../../../../../utils/helpers/users/getUser";
+import { verifyAuthorization } from "../../../../../../../utils/helpers/users/validation/verifyAuthorization";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const isTokenValid = await verifyAuthorization(req);
+
+  if (isTokenValid.isTokenValid === false) {
+    return res.status(isTokenValid.statusCode).json({ message: isTokenValid.error });
+  }
   const db = await connectToDatabase();
   const usersCollection = db.collection("users");
   const pokemonsCollection = db.collection("pokemons");

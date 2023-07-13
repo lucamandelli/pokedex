@@ -6,8 +6,14 @@ import { getUser } from "../../../../../../utils/helpers/users/getUser";
 import { Pokemon } from "../../../../../../utils/models/Pokemons";
 import { updatePokemon } from "../../../../../../utils/helpers/pokemons/updatePokemon";
 import { deletePokemon } from "../../../../../../utils/helpers/pokemons/deletePokemon";
+import { verifyAuthorization } from "../../../../../../utils/helpers/users/validation/verifyAuthorization";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const isTokenValid = await verifyAuthorization(req);
+
+  if (isTokenValid.isTokenValid === false) {
+    return res.status(isTokenValid.statusCode).json({ message: isTokenValid.error });
+  }
   const db = await connectToDatabase();
   const pokemonCollection = db.collection("pokemons");
   const usersCollection = db.collection("users");
