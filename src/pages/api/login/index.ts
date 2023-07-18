@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../../utils/db";
-import { searchUser } from "../../../../utils/helpers/users/searchUser";
+import { connectToDatabase } from "@/utils/db";
+import { searchUser } from "@/utils/helpers/users/searchUser";
 import jwt from 'jsonwebtoken';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

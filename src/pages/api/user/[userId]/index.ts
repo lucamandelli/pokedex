@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../../../utils/db";
-import { checkIdOrName } from "../../../../../utils/helpers/validation/checkIdOrName";
-import { getUser } from "../../../../../utils/helpers/users/getUser";
-import { User } from "../../../../../utils/models/User";
-import { updateUser } from "../../../../../utils/helpers/users/updateUser";
-import { deleteUser } from "../../../../../utils/helpers/users/deleteUser";
-import { verifyAuthorization } from "../../../../../utils/helpers/users/validation/verifyAuthorization";
+import { connectToDatabase } from "@/utils/db";
+import { checkIdOrName } from "@/utils/helpers/validation/checkIdOrName";
+import { getUser } from "@/utils/helpers/users/getUser";
+import { User } from "@/utils/models/User";
+import { updateUser } from "@/utils/helpers/users/updateUser";
+import { deleteUser } from "@/utils/helpers/users/deleteUser";
+import { verifyAuthorization } from "@/utils/helpers/users/validation/verifyAuthorization";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const isTokenValid = await verifyAuthorization(req);

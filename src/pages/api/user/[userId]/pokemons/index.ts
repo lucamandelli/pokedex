@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../../../../utils/db";
-import { getAllPokemons } from "../../../../../../utils/helpers/pokemons/getAllPokemons";
-import { processPokemons } from "../../../../../../utils/helpers/pokemons/processPokemon";
-import { Pokemon } from "../../../../../../utils/models/Pokemons";
-import { getUser } from "../../../../../../utils/helpers/users/getUser";
-import { checkIdOrName } from "../../../../../../utils/helpers/validation/checkIdOrName";
-import { verifyAuthorization } from "../../../../../../utils/helpers/users/validation/verifyAuthorization";
+import { connectToDatabase } from "@/utils/db";
+import { getAllPokemons } from "@/utils/helpers/pokemons/getAllPokemons";
+import { processPokemons } from "@/utils/helpers/pokemons/processPokemon";
+import { Pokemon } from "@/utils/models/Pokemons";
+import { getUser } from "@/utils/helpers/users/getUser";
+import { checkIdOrName } from "@/utils/helpers/validation/checkIdOrName";
+import { verifyAuthorization } from "@/utils/helpers/users/validation/verifyAuthorization";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const isTokenValid = await verifyAuthorization(req);

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../../utils/db";
-import { User } from "../../../../utils/models/User";
+import { connectToDatabase } from "@/utils/db";
+import { User } from "@/utils/models/User";
 import bcrypt from 'bcrypt';
-import { processUser } from "../../../../utils/helpers/users/processUser";
+import { processUser } from "@/utils/helpers/users/processUser";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const db = await connectToDatabase();

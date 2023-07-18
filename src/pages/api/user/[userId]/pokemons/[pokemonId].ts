@@ -1,12 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { connectToDatabase } from "../../../../../../utils/db";
-import { getPokemon } from "../../../../../../utils/helpers/pokemons/getPokemon";
-import { checkIdOrName } from "../../../../../../utils/helpers/validation/checkIdOrName";
-import { getUser } from "../../../../../../utils/helpers/users/getUser";
-import { Pokemon } from "../../../../../../utils/models/Pokemons";
-import { updatePokemon } from "../../../../../../utils/helpers/pokemons/updatePokemon";
-import { deletePokemon } from "../../../../../../utils/helpers/pokemons/deletePokemon";
-import { verifyAuthorization } from "../../../../../../utils/helpers/users/validation/verifyAuthorization";
+import { connectToDatabase } from "@/utils/db"
+import { getPokemon } from "@/utils/helpers/pokemons/getPokemon";
+import { checkIdOrName } from "@/utils/helpers/validation/checkIdOrName";
+import { getUser } from "@/utils/helpers/users/getUser";
+import { Pokemon } from "@/utils/models/Pokemons";
+import { updatePokemon } from "@/utils/helpers/pokemons/updatePokemon";
+import { deletePokemon } from "@/utils/helpers/pokemons/deletePokemon";
+import { verifyAuthorization } from "@/utils/helpers/users/validation/verifyAuthorization";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const isTokenValid = await verifyAuthorization(req);
